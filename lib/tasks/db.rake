@@ -2,16 +2,9 @@
 namespace :db do
   desc "Hard development sqlite3 reset && seed"
     task :hard_reset do
-      file_name = 'db/development.sqlite3'
-      print "[del] #{file_name}"
-      begin
-      File.delete("#{Rails.root}/#{file_name}")
-      print " OK\n"
-      rescue
-      print " FAIL\n"
-      end
-      puts "[rake] db:migrate && [rake] db:seed"
-      exec "cd #{Rails.root} && rake db:migrate && rake db:seed"
+      cmd = "rake db:drop && rake db:create && rake db:migrate && rake db:seed"
+      puts cmd.gsub('rake','[rake]')
+      exec "cd #{Rails.root} && #{cmd}"
     end
 
   desc "Soft database reset && seed"
