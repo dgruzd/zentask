@@ -13,4 +13,33 @@ namespace :db do
       puts str.gsub('rake','[rake]')
       exec str
     end
+
+  desc "Create database config"
+    task :init_config do
+      app = Rails.application.class.parent_name.downcase
+      str = <<EOF
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: #{app}_development
+  username:
+  host: localhost
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: #{app}_production
+  username: #{app}
+  password: #{app}
+  socket: /tmp
+EOF
+  file = 'config/database.yml'
+  puts "[writing] #{file}"
+  File.open("#{Rails.root}/#{file}",'w'){|f| f.write(str)}
+    end
+
 end
