@@ -25,10 +25,11 @@ development:
   username:
   host: localhost
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
-  pool: 5
-  timeout: 5000
+  adapter: postgresql
+  encoding: utf8
+  database: #{app}_test
+  username:
+  host: localhost
 production:
   adapter: postgresql
   encoding: utf8
