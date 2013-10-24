@@ -1,5 +1,5 @@
 development:
-  public_host_username: rails
-  public_host: zengile.com
+  public_host_username: user
+  public_host: example.com
   public_port: 3000
   local_port: 3000
