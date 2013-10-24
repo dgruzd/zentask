@@ -1,0 +1,5 @@
+development:
+  public_host_username: user
+  public_host: example.com
+  public_port: 3000
+  local_port: 3000
